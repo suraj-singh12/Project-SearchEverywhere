@@ -1,0 +1,2 @@
+cat * | grep keyword 
+grep ^ /dev/null * | grep keyword

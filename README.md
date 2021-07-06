@@ -5,7 +5,7 @@ This is a tool that lists out all the lines containing [keyword] in the [File(s)
 
 This is very powerful tool, as whenever you need to fetch a particular information from a file or a bunch of files, you can just give it a go and get exactly what you looking for without even opening any files.
 
-This works well with .txt, .odp, .odt, .pdf files as of now.
+This works well with .txt, .odp, .odt, .pdf files as of now. A quick demo, showing working of this program is available [here](https://www.linkedin.com/posts/suraj-singh-5092_connections-stackoverflow-project-activity-6816378849006374912-awv_)
 
 ## Analogy
 
@@ -85,11 +85,7 @@ Contributions are always welcome!
 
 1. Fork it!
 2. Test it
-3. Create a new branch only if 
-    - Changes are very big 
-    - Adding a feature
-    
-    else work in master branch itself on `script(SearchEverywhere.py)` in `source`
+3. Create a new branch and work on `script(SearchEverywhere.py)` (in `source`)
 4. Make changes to the `script(SearchEverywhere.py)`
 5. Commit your changes with an appopriate comment expaining the change.
 7. Create a pull request

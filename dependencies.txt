@@ -1,6 +1,0 @@
-build-essential 
-python3 
-libpoppler-cpp-dev pkg-config python-dev python3-pip
-figlet
-unoconv
-pip package pdftotext 

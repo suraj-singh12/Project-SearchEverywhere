@@ -9,9 +9,9 @@ This works well with .txt, .odp, .odt, .pdf files as of now. A quick demo, showi
 
 ## Analogy
 
-If you are familiar with ```cat``` and ```grep``` tools and have at some point of time piped your output to ```grep``` command or done piping like ```cat syslog.log | grep ERROR``` or ```cat *.txt | grep "xyz information"``` then to tell you this program basically does similar type of work under the hood. 
+If you are familiar with ```cat``` and ```grep``` tools and have at some point of time piped your output to ```grep``` command or done piping like ```cat syslog.log | grep ERROR``` or ```cat *.txt | grep "xyz information"``` then to tell you this program basically does similar type of work, under the hood. 
 
-As we know, ```cat``` only worrks with ```plain text``` files, and can't show you the text in ```.odp```(presentations), ```.odt```(word files), ```.pdf``` files, this program does all this conversions in background to allow you to even peek in these files and get the information you are looking for.
+As ```cat``` only works on ```plain text``` files, and can't show you the text in ```.odp```(presentations), ```.odt```(word files), ```.pdf``` files, this program does all this conversions in background to allow you to even peek in these files and get the information you are looking for.
 
 
 ## Difference
@@ -26,7 +26,7 @@ SearchEverywhere - "information"
 ```
 
 
--> But suppose the files are ```word documents(.odt)```, ```pdfs```, ```presentations(.odp)``` types then
+-> But if the files are ```word documents(.odt)```, ```pdfs```, ```presentations(.odp)``` types then
 
 ```bash
 cat * | grep "information"    # would NOT work
@@ -37,7 +37,7 @@ SearchEverywhere - "information"    # will still work
 ``` 
 > The results are saved for later use in a `results.txt` file, so if in case user wants to use them, he/she may. But the file is overwritten every time a new search is performed.
 
-> On files other than `.txt` type, conversions are done, and new directories are made. User is advised not to touch them, they can safely be removed after program terminates or can be utilised by user.
+> On files other than `.txt` type, conversions are done, and new directories are made. They can safely be removed after program terminates or can be utilised by user.
 
 ## Installation 
 
@@ -54,7 +54,7 @@ This works on Debian based distros as of now and can be installed by following t
 ```
 
 ## Usage
-To learn to use this easily, you may enter into ```testing_base``` directory post installation of the tool.
+To learn to use this easily, you may enter into ```testing_base``` directory, post installation of the tool.
 
 ```bash
 cd testing_base
@@ -82,13 +82,4 @@ An example video is given [here](https://www.linkedin.com/posts/suraj-singh-5092
 ## Contributing
 
 Contributions are always welcome!
-
-1. Fork it!
-2. Test it
-3. Create a new branch and work on `script(SearchEverywhere.py)` (in `source`)
-4. Make changes to the `script(SearchEverywhere.py)`
-5. Commit your changes with an appopriate comment expaining the change.
-7. Create a pull request
-8. Done ;-)
-
-> Kindly consider testing and debugging on a bunch of files of different file types(.txt, .odp, .odt, .pdf) to ensure that nothing is broken by the change made by you.
+Kindly check out ```CONTRIBUTING.md```

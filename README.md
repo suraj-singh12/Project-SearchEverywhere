@@ -50,6 +50,9 @@ This works on Debian based distros as of now and can be installed by following t
   cd Project-SearchEverywhere
 ```
 ```bash
+  sudo chmod +x /dist/SearchEverywhere
+```
+```bash
   sudo sh install.sh
 ```
 

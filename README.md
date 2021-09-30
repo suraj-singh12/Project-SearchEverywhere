@@ -3,7 +3,9 @@
 
 This is a tool that lists out all the lines containing [keyword] in the [File(s)] specified by user.
 
-This is very powerful tool, as whenever you need to fetch a particular information from a file or a bunch of files, you can just give it a go and get exactly what you looking for without even opening any files.
+This tool I have made especially for college students so that they can easily find out the topics they wish to study from a number of ppt, pdf and document files provided by the professors. However in general it can be used by anyone.
+
+This is a powerful tool, as whenever you need to fetch a particular information from a file or a bunch of files, you can just give it a go and get exactly what you looking for without even opening any files.
 
 This works well with .txt, .odp, .odt, .pdf files as of now. A quick demo, showing working of this program is available [here](https://www.linkedin.com/posts/suraj-singh-5092_connections-stackoverflow-project-activity-6816378849006374912-awv_)
 

@@ -33,7 +33,7 @@
 
 6. Conduct tests using source file (```SearchEverywhere.py```) in testing_base directory, for example:
 ```bash
-  ./SearchEverywhere.py - heading
+  python ./SearchEverywhere.py - heading
 ```
 7. Create a new branch before making any changes to source file ```SearchEverywhere.py``` in ```src/```
 

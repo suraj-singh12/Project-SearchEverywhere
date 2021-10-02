@@ -25,7 +25,7 @@
 
 5. Copy the src/ contents to testing_base/
 ```bash
-  cp -R source/* testing_base/
+  cp -R src/* testing_base/
 ```
 ```bash
  cd testing_base/

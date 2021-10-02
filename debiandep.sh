@@ -7,3 +7,4 @@ sudo apt install figlet -y
 sudo apt install unoconv -y
 pip install pdftotext 
 sudo apt update
+

@@ -10,12 +10,14 @@
   cd Project-SearchEverywhere
 ```
 
-3. Install dependencies
+3. Install dependencies 
+* [debian-based]
 ```bash
-  sudo chmod +x dependencies.sh
+  sudo sh debiandep.sh
 ```
+* [arch-based]
 ```bash
-  sudo ./dependencies.sh
+  sudo sh fedoradep.sh
 ```
 
 4. Make the source file executable

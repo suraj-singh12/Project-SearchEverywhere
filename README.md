@@ -43,7 +43,7 @@ SearchEverywhere - "information"    # will still work
 
 ## Installation 
 
-This works on Debian based distros as of now and can be installed by following these commands:
+This works on Debian based as well as Arch based distros and can be installed by following these commands:
 
 ```bash 
   git clone https://github.com/suraj-singh12/Project-SearchEverywhere/
@@ -54,6 +54,15 @@ This works on Debian based distros as of now and can be installed by following t
 ```bash
   sudo chmod +x /dist/SearchEverywhere
 ```
+#### Install Dependencies [arch-based (eg. Fedora)]
+```bash
+  sudo sh fedoradep.sh
+```
+#### Install Dependencies [debian-based (eg. Ubuntu)]
+```bash
+  sudo sh debiandep.sh
+```
+#### Install the tool
 ```bash
   sudo sh install.sh
 ```

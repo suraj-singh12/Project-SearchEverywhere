@@ -136,6 +136,97 @@ def doc_to_txt(filename):
     new_dir=os.path.abspath(new_dir)
     return new_dir  
 
+def ppt_to_text(filename):
+    new_dir = "converted-ppts/"
+ 
+    if filename != "*.ppt":
+        if os.path.exists(filename) == True:
+            command = "unoconv --format=pdf --output='" + new_dir + \
+                filename.replace(".ppt", ".pdf") + "' '" + filename + "'"
+            os.system(command)
+ 
+            os.chdir(new_dir)
+            command = "pdftotext '" + filename.replace(".ppt", ".pdf") + "'"
+            os.system(command)
+            command = "rm '" + filename.replace(".ppt", ".pdf") + "'"
+            os.system(command)
+            os.chdir("../")
+        else:
+            print("Error! No such file exists!")
+            sys.exit()
+    else:
+        files_counter = 0
+        for nameOfFile in os.listdir():
+            if nameOfFile.endswith(".ppt"):
+                files_counter += 1
+                # convert odp to pdf
+                command = "unoconv --format=pdf --output='" + new_dir + \
+                    nameOfFile.replace(".ppt", ".pdf") + \
+                    "' '" + nameOfFile + "'"
+                os.system(command)
+ 
+                os.chdir(new_dir)
+                # convert pdf to txt
+                command = "pdftotext '" + \
+                    nameOfFile.replace(".ppt", ".pdf") + "'"
+                os.system(command)
+                command = "rm '" + filename.replace(".ppt", ".pdf") + "'"
+                os.system(command)
+                os.chdir("../")
+ 
+        if files_counter == 0:
+            print("No files with .ppt extensions in current folder.")
+            print("Terminating...")
+            sys.exit()
+ 
+    new_dir = os.path.abspath(new_dir)
+    return new_dir
+
+def pptx_to_text(filename):
+    new_dir = "converted-pptxs/"
+ 
+    if filename != "*.pptx":
+        if os.path.exists(filename) == True:
+            command = "unoconv --format=pdf --output='" + new_dir + \
+                filename.replace(".pptx", ".pdf") + "' '" + filename + "'"
+            os.system(command)
+            os.chdir(new_dir)
+            command = "pdftotext '" + filename.replace(".pptx", ".pdf") + "'"
+            os.system(command)
+            command = "rm '" + filename.replace(".pptx", ".pdf") + "'"
+            os.system(command)
+            os.chdir("../")
+        else:
+            print("Error! No such file exists!")
+            sys.exit()
+    else:
+        files_counter = 0
+        for nameOfFile in os.listdir():
+            if nameOfFile.endswith(".pptx"):
+                files_counter += 1
+                # convert odp to pdf
+                command = "unoconv --format=pdf --output='" + new_dir + \
+                    nameOfFile.replace(".pptx", ".pdf") + \
+                    "' '" + nameOfFile + "'"
+                os.system(command)
+ 
+                os.chdir(new_dir)
+                # convert pdf to txt
+                command = "pdftotext '" + \
+                    nameOfFile.replace(".pptx", ".pdf") + "'"
+                os.system(command)
+                command = "rm '" + filename.replace(".pptx", ".pdf") + "'"
+                os.system(command)
+                os.chdir("../")
+ 
+        if files_counter == 0:
+            print("No files with .pptx extensions in current folder.")
+            print("Terminating...")
+            sys.exit()
+ 
+    new_dir = os.path.abspath(new_dir)
+    return new_dir
+
 def odp_to_text(filename):
     new_dir="converted-presentations/"
 
@@ -260,14 +351,14 @@ def main():
             text("*.txt",keyword,os.path.abspath("converted"))
             sys.exit()
         
-        # * means files of all types (txt, pdf, odt, odp, docx, doc)
+        # * means files of all types (txt, pdf, odt, odp, docx, doc, ppt, pptx)
         odp_dir=''
         odt_dir=''
         pdf_dir=''
         docx_dir=''
         doc_dir=''
         print("Processing all files... Required only during first run.")
-        #first do all conversions (odp,odt,docx,doc,pdf->txt)
+        #first do all conversions (odp,odt,docx,doc,ppt,pptx,pdf->txt)
         for file in os.listdir():
             if file.endswith(".odp"):
                 odp_dir=odp_to_text(file)
@@ -279,6 +370,10 @@ def main():
                 docx_dir=docx_to_txt(file)
             elif file.endswith(".doc"):
                 doc_dir=doc_to_txt(file)
+            elif file.endswith(".ppt"):
+                ppt_dir = ppt_to_text(file)
+            elif file.endswith(".pptx"):
+                pptx_dir = pptx_to_text(file)
         
         if os.path.exists("converted") == True:
             os.system("rm -rf converted")
@@ -320,6 +415,20 @@ def main():
             os.chdir("../")
             # now delete converted-doc/ dir (cleanup)
             os.system("rm -rf converted-doc")
+        if ppt_dir != '':
+            os.chdir("converted-ppts")
+            # copy everything from converted-ppts/ dir into 'converted' dir in base dir
+            os.system("cp * ../converted/")
+            os.chdir("../")
+            # now delete converted-ppts/ dir (cleanup)
+            os.system("rm -rf converted-ppts")
+        if pptx_dir != '':
+            os.chdir("converted-pptxs")
+            # copy everything from converted-pptxs/ dir into 'converted' dir in base dir
+            os.system("cp * ../converted/")
+            os.chdir("../")
+            # now delete converted-pptxs/ dir (cleanup)
+            os.system("rm -rf converted-pptxs")
 
         # copy all .txt files from base to converted directory if exists
         if glob("*.txt"):
@@ -362,6 +471,16 @@ def main():
         doc_dir = doc_to_txt(filename)
         filename = filename.replace(".doc",".txt")
         text(filename,keyword,doc_dir)
+        os.chdir("../")
+    elif filename.endswith(".ppt") or filename == "*.ppt":
+        ppt_dir = ppt_to_text(filename)
+        filename = filename.replace(".ppt", ".txt")
+        text(filename, keyword, ppt_dir)
+        os.chdir("../")
+    elif filename.endswith(".pptx") or filename == "*.pptx":
+        pptx_dir = pptx_to_text(filename)
+        filename = filename.replace(".pptx", ".txt")
+        text(filename, keyword, pptx_dir)
         os.chdir("../")
     else:
         print("Try again!")

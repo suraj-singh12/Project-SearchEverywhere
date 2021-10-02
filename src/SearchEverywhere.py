@@ -159,7 +159,7 @@ def ppt_to_text(filename):
         for nameOfFile in os.listdir():
             if nameOfFile.endswith(".ppt"):
                 files_counter += 1
-                # convert odp to pdf
+                # convert ppt to pdf
                 command = "unoconv --format=pdf --output='" + new_dir + \
                     nameOfFile.replace(".ppt", ".pdf") + \
                     "' '" + nameOfFile + "'"
@@ -357,6 +357,8 @@ def main():
         pdf_dir=''
         docx_dir=''
         doc_dir=''
+        ppt_dir=''
+        pptx_dir=''
         print("Processing all files... Required only during first run.")
         #first do all conversions (odp,odt,docx,doc,ppt,pptx,pdf->txt)
         for file in os.listdir():

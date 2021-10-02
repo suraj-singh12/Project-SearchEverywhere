@@ -84,6 +84,58 @@ def odt_to_txt(filename):
     new_dir=os.path.abspath(new_dir)
     return new_dir
 
+def docx_to_txt(filename):
+    new_dir="converted-docx/"
+
+    if filename != "*.docx":
+        if os.path.exists(filename) == True:
+            # note: This command automatically creates "converted-docx" dir and places converted file(s) in it.
+            command = "unoconv --format=txt --output='" + new_dir + filename.replace(".docx",".txt") + "' '" + filename + "'"
+            os.system(command)
+        else:
+            print("Error! No such file.")
+            sys.exit()
+    else:
+        files_counter = 0
+        for nameOfFile in os.listdir():
+            if nameOfFile.endswith(".docx"):
+                files_counter += 1
+                command = "unoconv --format=txt --output='" + new_dir + nameOfFile.replace(".docx",".txt") + "' '" + nameOfFile + "'"
+                os.system(command)
+
+        if files_counter == 0:
+            print("No files with .docx extensions in the directory.")
+            print("Terminating...")
+            sys.exit()
+    new_dir=os.path.abspath(new_dir)
+    return new_dir
+
+def doc_to_txt(filename):
+    new_dir="converted-doc/"
+
+    if filename != "*.doc":
+        if os.path.exists(filename) == True:
+            # note: This command automatically creates "converted-doc" dir and places converted file(s) in it.
+            command = "unoconv --format=txt --output='" + new_dir + filename.replace(".doc",".txt") + "' '" + filename + "'"
+            os.system(command)
+        else:
+            print("Error! No such file.")
+            sys.exit()
+    else:
+        files_counter = 0
+        for nameOfFile in os.listdir():
+            if nameOfFile.endswith(".doc"):
+                files_counter += 1
+                command = "unoconv --format=txt --output='" + new_dir + nameOfFile.replace(".doc",".txt") + "' '" + nameOfFile + "'"
+                os.system(command)
+
+        if files_counter == 0:
+            print("No files with .doc extensions in the directory.")
+            print("Terminating...")
+            sys.exit()
+    new_dir=os.path.abspath(new_dir)
+    return new_dir  
+
 def odp_to_text(filename):
     new_dir="converted-presentations/"
 
@@ -208,12 +260,14 @@ def main():
             text("*.txt",keyword,os.path.abspath("converted"))
             sys.exit()
         
-        # * means files of all types (txt, pdf, odt, odp)
+        # * means files of all types (txt, pdf, odt, odp, docx, doc)
         odp_dir=''
         odt_dir=''
         pdf_dir=''
+        docx_dir=''
+        doc_dir=''
         print("Processing all files... Required only during first run.")
-        #first do all conversions (odp,odt,pdf->txt)
+        #first do all conversions (odp,odt,docx,doc,pdf->txt)
         for file in os.listdir():
             if file.endswith(".odp"):
                 odp_dir=odp_to_text(file)
@@ -221,6 +275,10 @@ def main():
                 odt_dir=odt_to_txt(file)
             elif file.endswith(".pdf"):
                 pdf_dir=pdf_to_text(file)
+            elif file.endswith(".docx"):
+                docx_dir=docx_to_txt(file)
+            elif file.endswith(".doc"):
+                doc_dir=doc_to_txt(file)
         
         if os.path.exists("converted") == True:
             os.system("rm -rf converted")
@@ -248,6 +306,20 @@ def main():
             os.chdir("../")
             # cleanup
             os.system("rm -rf converted-pdfs")
+        if docx_dir!='':
+            os.chdir("converted-docx")
+            # copy everything from converted-docx/ dir into 'converted' dir in base dir
+            os.system("cp * ../converted/")
+            os.chdir("../")
+            # now delete converted-docx/ dir (cleanup)
+            os.system("rm -rf converted-docx")
+        if doc_dir!='':
+            os.chdir("converted-doc")
+            # copy everything from converted-doc/ dir into 'converted' dir in base dir
+            os.system("cp * ../converted/")
+            os.chdir("../")
+            # now delete converted-doc/ dir (cleanup)
+            os.system("rm -rf converted-doc")
 
         # copy all .txt files from base to converted directory if exists
         if glob("*.txt"):
@@ -280,6 +352,16 @@ def main():
         pdf_dir=pdf_to_text(filename)
         filename= filename.replace(".pdf",".txt")
         text(filename,keyword,pdf_dir)
+        os.chdir("../")
+    elif filename.endswith(".docx") or filename == "*.docx":
+        docx_dir = docx_to_txt(filename)
+        filename = filename.replace(".docx",".txt")
+        text(filename,keyword,docx_dir)
+        os.chdir("../")
+    elif filename.endswith(".doc") or filename == "*.doc":
+        doc_dir = doc_to_txt(filename)
+        filename = filename.replace(".doc",".txt")
+        text(filename,keyword,doc_dir)
         os.chdir("../")
     else:
         print("Try again!")

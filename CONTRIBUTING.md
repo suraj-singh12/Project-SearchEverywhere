@@ -11,13 +11,8 @@
 ```
 
 3. Install dependencies 
-* [debian-based]
 ```bash
-  sudo sh debiandep.sh
-```
-* [arch-based]
-```bash
-  sudo sh fedoradep.sh
+  sudo sh dependency.sh
 ```
 
 4. Make the source file executable

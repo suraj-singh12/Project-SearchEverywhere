@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo cp dist/SearchEverywhere /usr/bin/
-sudo apt update
+sudo chmod +x /usr/bin/SearchEverywhere
 figlet "Install Success"
 echo "Write   SearchEverywhere --help   to know about the functioning of the program"
 echo "You may like to test the program on given sample files"

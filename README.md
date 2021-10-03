@@ -42,9 +42,9 @@ SearchEverywhere - "information"    # will still work
 > On files other than `.txt` type, conversions are done, and new directories are made. They can safely be removed after program terminates or can be utilised by user.
 
 ## Installation 
+This works on almost all types of linux distros (i.e. debian-based, arch-based, redhat, fedora, etc) and can be installed by the following commands:
 
-This works on Debian based as well as Arch based distros and can be installed by following these commands:
-
+#### Clone the repo
 ```bash 
   git clone https://github.com/suraj-singh12/Project-SearchEverywhere/
 ```
@@ -54,13 +54,9 @@ This works on Debian based as well as Arch based distros and can be installed by
 ```bash
   sudo chmod +x /dist/SearchEverywhere
 ```
-#### Install Dependencies [arch-based (eg. Fedora)]
+#### Install Dependencies
 ```bash
-  sudo sh fedoradep.sh
-```
-#### Install Dependencies [debian-based (eg. Ubuntu)]
-```bash
-  sudo sh debiandep.sh
+  sudo sh dependency.sh
 ```
 #### Install the tool
 ```bash

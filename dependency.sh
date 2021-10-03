@@ -21,8 +21,8 @@ function If_apt ()
 function If_xbps ()
 {
     sudo xbps-install -Syu
-    sudo xbps_install base-devel python3 python3-pip figlet poppler-glib unoconv -y
-    pip install pdftotext
+    sudo xbps-install base-devel python3 python3-pip figlet poppler-glib unoconv -y
+    pip install wheel pdftotext
     exit 0
 }
 

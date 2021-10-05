@@ -1,11 +1,17 @@
 # ChangeLog
-All notable changes to this project will be documented in this file.
-
-## Added
-Base v1.0 of SearchEverywhere Project
-
-## Changed
+All notable changes to this project ```SearchEverywhere``` will be documented in this file.
 
 
-## Removed
+## Base v1.0 
+### Features
++ Base version of program [first release]
++ Supports .txt, .odp, .odt, .pdf file formats
++ Runs on debian-based linux distros
+
+##  v1.5 
+### Features
++ Support for .docx/.doc file formats added
++ Support for .pptx/.ppt file formats added
++ Support for other GNU/Linux distros added
++ Support for WSL added
 

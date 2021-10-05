@@ -91,7 +91,7 @@ SearchEverywhere LectureNotes.pdf "member functions" # will search 'member funct
 
 An example video is given [here](https://www.linkedin.com/posts/suraj-singh-5092_connections-stackoverflow-project-activity-6816378849006374912-awv_), you may prefer to go through it incase you are facing any difficulty in learning this.
 
-## Few Pointes
+## Few Points
 1. The search is case insensitive.
 2. First time run on `.odp/.ppt/.pptx` files takes some time. The time taken is linear with the number of `.odp/.ppt/.pptx` files in the directory
 

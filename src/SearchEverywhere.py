@@ -322,7 +322,7 @@ Example: SearchEverywhere myfile.txt urgent\n\
          SearchEverywhere - [keyword(s)]\n")
     print("This program lists all the lines with [keyword] in them from the specified FILES")
     print("It displays the result as well as stores it in a results.txt file to allow you to use it later.")
-    print("Program Version: 1.0")
+    print("Program Version: 1.5")
     print("\nDeveloped by: Suraj Singh (https://github.com/suraj-singh12)\n")
     sys.exit()
 

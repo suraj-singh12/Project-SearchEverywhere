@@ -11,7 +11,7 @@ def text(filename,keyword,dir=''):
         os.chdir(dir)
 
     # keyword = input("Enter keyword: ")
-    
+
     with open("results.txt","w"):
         pass
     # this ensures, results file is empty if exists (otherwise it makes many copies of text when else part of below code works))
@@ -20,14 +20,14 @@ def text(filename,keyword,dir=''):
     if filename != "*.txt":
         command="cat '" + filename + "' | grep -i '" + keyword + "' > results.txt"
         os.system(command)
-    
+
     # if it is all .txt files to be searched
     else:
         found=list()
         for file in os.listdir():
             if file.endswith(".txt"):
-                command="cat '" + file + "' | grep -i '" + keyword + "'" 
-                
+                command="cat '" + file + "' | grep -i '" + keyword + "'"
+
                 proc=subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, )
                 find=(proc.communicate()[0]).decode("utf-8")
                 # print(find)
@@ -55,8 +55,17 @@ def text(filename,keyword,dir=''):
         else:
             os.system("clear")
             os.system("figlet -c Found This")
+            key_len = len(keyword) # Length of keyword
             for line in f.readlines():
-                print(line,end='') 
+                i = 0
+                while i < len(line):
+                    word = line[i:i+key_len] 
+                    if word == keyword: 
+                        print('\033[91m' + word + '\033[0m',end='') # ANSI code for red color
+                        i = i+key_len
+                    else:
+                        print(line[i],end='')
+                        i = i+1
 
 def odt_to_txt(filename):
     new_dir="converted-odt/"
@@ -134,17 +143,17 @@ def doc_to_txt(filename):
             print("Terminating...")
             sys.exit()
     new_dir=os.path.abspath(new_dir)
-    return new_dir  
+    return new_dir
 
 def ppt_to_text(filename):
     new_dir = "converted-ppts/"
- 
+
     if filename != "*.ppt":
         if os.path.exists(filename) == True:
             command = "unoconv --format=pdf --output='" + new_dir + \
                 filename.replace(".ppt", ".pdf") + "' '" + filename + "'"
             os.system(command)
- 
+
             os.chdir(new_dir)
             command = "pdftotext '" + filename.replace(".ppt", ".pdf") + "'"
             os.system(command)
@@ -164,7 +173,7 @@ def ppt_to_text(filename):
                     nameOfFile.replace(".ppt", ".pdf") + \
                     "' '" + nameOfFile + "'"
                 os.system(command)
- 
+
                 os.chdir(new_dir)
                 # convert pdf to txt
                 command = "pdftotext '" + \
@@ -173,18 +182,18 @@ def ppt_to_text(filename):
                 command = "rm '" + filename.replace(".ppt", ".pdf") + "'"
                 os.system(command)
                 os.chdir("../")
- 
+
         if files_counter == 0:
             print("No files with .ppt extensions in current folder.")
             print("Terminating...")
             sys.exit()
- 
+
     new_dir = os.path.abspath(new_dir)
     return new_dir
 
 def pptx_to_text(filename):
     new_dir = "converted-pptxs/"
- 
+
     if filename != "*.pptx":
         if os.path.exists(filename) == True:
             command = "unoconv --format=pdf --output='" + new_dir + \
@@ -209,7 +218,7 @@ def pptx_to_text(filename):
                     nameOfFile.replace(".pptx", ".pdf") + \
                     "' '" + nameOfFile + "'"
                 os.system(command)
- 
+
                 os.chdir(new_dir)
                 # convert pdf to txt
                 command = "pdftotext '" + \
@@ -218,12 +227,12 @@ def pptx_to_text(filename):
                 command = "rm '" + filename.replace(".pptx", ".pdf") + "'"
                 os.system(command)
                 os.chdir("../")
- 
+
         if files_counter == 0:
             print("No files with .pptx extensions in current folder.")
             print("Terminating...")
             sys.exit()
- 
+
     new_dir = os.path.abspath(new_dir)
     return new_dir
 
@@ -263,7 +272,7 @@ def odp_to_text(filename):
                 command="rm '" + filename.replace(".odp",".pdf") + "'"
                 os.system(command)
                 os.chdir("../")
-        
+
         if files_counter==0:
             print("No files with .odp extensions in current folder.")
             print("Terminating...")
@@ -271,7 +280,7 @@ def odp_to_text(filename):
 
     new_dir=os.path.abspath(new_dir)
     return new_dir
-    
+
 def pdf_to_text(filename):
     new_dir="converted-pdfs"
     if os.path.exists(new_dir) == False:
@@ -311,7 +320,7 @@ def pdf_to_text(filename):
             print("No files with .pdf extensions in current folder")
             print("Terminating...")
             sys.exit()
-    
+
     new_dir=os.path.abspath(new_dir)
     return new_dir
 
@@ -344,13 +353,13 @@ def main():
 
     print("------------------------")
     # filename = input("Enter filename: ")
-    
+
     if filename == '*':
         # skip if converted folder already exists
         if os.path.exists("converted"):
             text("*.txt",keyword,os.path.abspath("converted"))
             sys.exit()
-        
+
         # * means files of all types (txt, pdf, odt, odp, docx, doc, ppt, pptx)
         odp_dir=''
         odt_dir=''
@@ -376,7 +385,7 @@ def main():
                 ppt_dir = ppt_to_text(file)
             elif file.endswith(".pptx"):
                 pptx_dir = pptx_to_text(file)
-        
+
         if os.path.exists("converted") == True:
             os.system("rm -rf converted")
         # in this dir we will copy everything that's converted to text

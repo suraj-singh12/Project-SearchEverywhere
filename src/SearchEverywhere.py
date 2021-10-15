@@ -56,11 +56,13 @@ def text(filename,keyword,dir=''):
             os.system("clear")
             os.system("figlet -c Found This")
             key_len = len(keyword) # Length of keyword
+            key_lower = keyword.lower()
             for line in f.readlines():
                 i = 0
                 while i < len(line):
-                    word = line[i:i+key_len] 
-                    if word == keyword: 
+                    word = line[i:i+key_len]
+                    word_lower = word.lower() # Case insensitive
+                    if word_lower == key_lower: 
                         print('\033[91m' + word + '\033[0m',end='') # ANSI code for red color
                         i = i+key_len
                     else:

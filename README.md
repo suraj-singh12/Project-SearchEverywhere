@@ -99,3 +99,9 @@ An example video is given [here](https://www.linkedin.com/posts/suraj-singh-5092
 
 Contributions are always welcome!
 Kindly check out ```CONTRIBUTING.md```
+
+## Running Demo of Project
+
+
+https://user-images.githubusercontent.com/71935307/192613468-56c27ba8-74b1-4ae0-9ffb-a3ddbcda427a.mp4
+

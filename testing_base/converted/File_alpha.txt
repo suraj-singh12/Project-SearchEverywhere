@@ -1,0 +1,11 @@
+Suppose this is a very crucial file,
+you just remember some words from this very important file
+and now you are searching for it, in your system everywhere, 
+opening all the work folders and navigating without a clue, because you didn't even remember the file name
+simply because you were too busy in your work or you just forgot the name now.
+How would you find it? Let me tell you there's a better tool around the corner
+use cat and pipe the output with grep. 
+Ohh isn't it beautiful..? Yeah it is!
+Here is my very crucial work "crucial word" 
+Hey i need to have a relook at you ohh my file's crucial keyword
+help me find this file.

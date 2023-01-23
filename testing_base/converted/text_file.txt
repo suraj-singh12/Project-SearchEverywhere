@@ -1,0 +1,15 @@
+Hii all!!, this is the text file and a lot of text has been written into it.
+Things are divided into lines
+and lines are many
+some lines contain words like python 
+like c++ c java etc languages
+
+
+cat * | grep keyword 
+is also very helpful when you need to access information that is scattered in many files. 
+
+well these are better alternatives:
+
+grep ^ /dev/null * | grep keyword
+
+grep "" *.txt

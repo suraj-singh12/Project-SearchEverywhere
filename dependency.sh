@@ -12,7 +12,7 @@ function If_pacman ()
 function If_apt ()
 {
     sudo apt update
-    sudo apt install build-essential python3 libpoppler-cpp-dev pkg-config python-dev python3-pip figlet poppler-utils unoconv -y 
+    sudo apt install build-essential python3 libpoppler-cpp-dev pkg-config libpython3-dev python3-pip figlet poppler-utils unoconv -y 
     pip install pdftotext 
     exit 0
 }

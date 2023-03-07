@@ -6,7 +6,7 @@ import sys
 from glob import glob
 from time import sleep
 
-def text(filename,keyword,dir=''):
+def text(filename, keyword, dir=''):
     if dir != '':
         os.chdir(dir)
 
@@ -337,32 +337,40 @@ Example: SearchEverywhere myfile.txt urgent\n\
     print("\nDeveloped by: Suraj Singh (https://github.com/suraj-singh12)\n")
     sys.exit()
 
-def main():
-    if len(sys.argv)<=2:
+
+def validate_input():
+    # if args are < or > 3, return invalid 
+    if len(sys.argv) != 3:
         usage()
-    # set the filename, and keyword
-    elif len(sys.argv)==3:
+        return 'invalid', 'invalid'
+    
+    # if 3 arguments are passed, fetch filename & keyword
+    if len(sys.argv) == 3:
         if sys.argv[1] == '-':
-            filename="*"
+            filename = "*"
         elif str(sys.argv[1])[0]=='-':
             filename = "*." + str(sys.argv[1])[1:]
         else:
             filename= sys.argv[1]
         keyword = sys.argv[2]
-        # print(keyword)
-    else:
-        usage()
+        return filename, keyword
+    
+def main():
+    # validate input and fetch filename & keyword to search
+    filename, keyword = validate_input()
+    if(filename == 'invalid' or keyword == 'invalid'): 
+        sys.exit()
+    
 
     print("------------------------")
-    # filename = input("Enter filename: ")
 
     if filename == '*':
-        # skip if converted folder already exists
+        # skip conversion, if 'converted' folder already exists
         if os.path.exists("converted"):
-            text("*.txt",keyword,os.path.abspath("converted"))
+            text("*.txt", keyword, os.path.abspath("converted"))
             sys.exit()
 
-        # * means files of all types (txt, pdf, odt, odp, docx, doc, ppt, pptx)
+        # '*' means files of all types (txt, pdf, odt, odp, docx, doc, ppt, pptx)
         odp_dir=''
         odt_dir=''
         pdf_dir=''
@@ -374,79 +382,52 @@ def main():
         #first do all conversions (odp,odt,docx,doc,ppt,pptx,pdf->txt)
         for file in os.listdir():
             if file.endswith(".odp"):
-                odp_dir=odp_to_text(file)
+                odp_dir = odp_to_text(file)
             elif file.endswith(".odt"):
-                odt_dir=odt_to_txt(file)
+                odt_dir = odt_to_txt(file)
             elif file.endswith(".pdf"):
-                pdf_dir=pdf_to_text(file)
+                pdf_dir = pdf_to_text(file)
             elif file.endswith(".docx"):
-                docx_dir=docx_to_txt(file)
+                docx_dir = docx_to_txt(file)
             elif file.endswith(".doc"):
-                doc_dir=doc_to_txt(file)
+                doc_dir = doc_to_txt(file)
             elif file.endswith(".ppt"):
                 ppt_dir = ppt_to_text(file)
             elif file.endswith(".pptx"):
                 pptx_dir = pptx_to_text(file)
 
-        if os.path.exists("converted") == True:
-            os.system("rm -rf converted")
+        # if os.path.exists("converted") == True:
+        #     os.system("rm -rf converted")
+
         # in this dir we will copy everything that's converted to text
         os.mkdir("converted")
 
         if odt_dir!='':
-            os.chdir("converted-odt")
             # copy everything from converted-odt/ dir into 'converted' dir in base dir
-            os.system("cp * ../converted/")
-            os.chdir("../")
-            # now delete converted-odt/ dir (cleanup)
-            os.system("rm -rf converted-odt")
+            os.system("cp ./converted-odt/* ./converted/")
         if odp_dir!='':
-            os.chdir("converted-presentations")
             # copy everything from converted-presentations/ dir into 'converted' dir in base dir
-            os.system("cp * ../converted/")
-            os.chdir("../")
-            # now delete converted-presentations/ dir (cleanup)
-            os.system("rm -rf converted-presentations")
+            os.system("cp ./converted-presentations/* ./converted/")
         if pdf_dir!='':
-            os.chdir("converted-pdfs")
             # copy everything from converted-pdfs/ dir into into 'converted' dir in base dir
-            os.system("cp * ../converted")
-            os.chdir("../")
-            # cleanup
-            os.system("rm -rf converted-pdfs")
+            os.system("cp ./converted-pdfs/* ./converted")
         if docx_dir!='':
-            os.chdir("converted-docx")
             # copy everything from converted-docx/ dir into 'converted' dir in base dir
-            os.system("cp * ../converted/")
-            os.chdir("../")
-            # now delete converted-docx/ dir (cleanup)
-            os.system("rm -rf converted-docx")
+            os.system("cp ./converted-docx/* ./converted/")
         if doc_dir!='':
-            os.chdir("converted-doc")
             # copy everything from converted-doc/ dir into 'converted' dir in base dir
-            os.system("cp * ../converted/")
-            os.chdir("../")
-            # now delete converted-doc/ dir (cleanup)
-            os.system("rm -rf converted-doc")
+            os.system("cp ./converted-doc/* ./converted/")
         if ppt_dir != '':
-            os.chdir("converted-ppts")
             # copy everything from converted-ppts/ dir into 'converted' dir in base dir
-            os.system("cp * ../converted/")
-            os.chdir("../")
-            # now delete converted-ppts/ dir (cleanup)
-            os.system("rm -rf converted-ppts")
+            os.system("cp ./converted-ppts/* ./converted/")
         if pptx_dir != '':
-            os.chdir("converted-pptxs")
             # copy everything from converted-pptxs/ dir into 'converted' dir in base dir
-            os.system("cp * ../converted/")
-            os.chdir("../")
-            # now delete converted-pptxs/ dir (cleanup)
-            os.system("rm -rf converted-pptxs")
-
+            os.system("cp ./converted-pptxs/* ./converted/")
         # copy all .txt files from base to converted directory if exists
         if glob("*.txt"):
             os.system("cp *txt converted/")
-
+        
+        # now we have all the files in 'converted' dir, let's do the searching part
         os.chdir("converted")
         if len(os.listdir()) == 0:
             print("No files to process!!")
@@ -496,7 +477,8 @@ def main():
         text(filename, keyword, pptx_dir)
         os.chdir("../")
     else:
-        print("Try again!")
+        print("\nEnter a valid file type!")
+        print('See --help for more info')
 
     print("\n------------------------")
 

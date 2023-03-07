@@ -46,7 +46,7 @@ def text(filename, keyword, dir=''):
         filesize = os.path.getsize("results.txt")
         if filesize == 0:
             print("Oops!!, there's nothing here that matches what you are looking for.")
-            again = input("You may try with another keyword. Want to try?(y/n) ")
+            again = input("\nYou may try with another keyword. Want to try?(y/n) ")
             if again=='y':
                 keyword = input("Enter keyword: ")
                 text(filename,keyword)
@@ -76,6 +76,8 @@ def odt_to_txt(filename):
         if os.path.exists(filename) == True:
             # note: This command automatically creates "converted-odt" dir and places converted file(s) in it.
             command = "unoconv --format=txt --output='" + new_dir + filename.replace(".odt",".txt") + "' '" + filename + "'"
+            # suppress any output or warnings
+            command = command + " 1>/dev/null 2>&1"
             os.system(command)
         else:
             print("Error! No such file.")
@@ -86,6 +88,8 @@ def odt_to_txt(filename):
             if nameOfFile.endswith(".odt"):
                 files_counter += 1
                 command = "unoconv --format=txt --output='" + new_dir + nameOfFile.replace(".odt",".txt") + "' '" + nameOfFile + "'"
+                # suppress any output or warnings
+                command = command + " 1>/dev/null 2>&1"
                 os.system(command)
 
         if files_counter == 0:
@@ -102,6 +106,8 @@ def docx_to_txt(filename):
         if os.path.exists(filename) == True:
             # note: This command automatically creates "converted-docx" dir and places converted file(s) in it.
             command = "unoconv --format=txt --output='" + new_dir + filename.replace(".docx",".txt") + "' '" + filename + "'"
+            # suppress any output or warnings
+            command = command + " 1>/dev/null 2>&1"
             os.system(command)
         else:
             print("Error! No such file.")
@@ -112,6 +118,8 @@ def docx_to_txt(filename):
             if nameOfFile.endswith(".docx"):
                 files_counter += 1
                 command = "unoconv --format=txt --output='" + new_dir + nameOfFile.replace(".docx",".txt") + "' '" + nameOfFile + "'"
+                # suppress any output or warnings
+                command = command + " 1>/dev/null 2>&1"
                 os.system(command)
 
         if files_counter == 0:
@@ -128,6 +136,8 @@ def doc_to_txt(filename):
         if os.path.exists(filename) == True:
             # note: This command automatically creates "converted-doc" dir and places converted file(s) in it.
             command = "unoconv --format=txt --output='" + new_dir + filename.replace(".doc",".txt") + "' '" + filename + "'"
+            # suppress any output or warnings
+            command = command + " 1>/dev/null 2>&1"
             os.system(command)
         else:
             print("Error! No such file.")
@@ -138,6 +148,8 @@ def doc_to_txt(filename):
             if nameOfFile.endswith(".doc"):
                 files_counter += 1
                 command = "unoconv --format=txt --output='" + new_dir + nameOfFile.replace(".doc",".txt") + "' '" + nameOfFile + "'"
+                # suppress any output or warnings
+                command = command + " 1>/dev/null 2>&1"
                 os.system(command)
 
         if files_counter == 0:
@@ -154,6 +166,8 @@ def ppt_to_text(filename):
         if os.path.exists(filename) == True:
             command = "unoconv --format=pdf --output='" + new_dir + \
                 filename.replace(".ppt", ".pdf") + "' '" + filename + "'"
+            # suppress any output or warnings
+            command = command + " 1>/dev/null 2>&1"
             os.system(command)
 
             os.chdir(new_dir)
@@ -174,6 +188,8 @@ def ppt_to_text(filename):
                 command = "unoconv --format=pdf --output='" + new_dir + \
                     nameOfFile.replace(".ppt", ".pdf") + \
                     "' '" + nameOfFile + "'"
+                # suppress any output or warnings
+                command = command + " 1>/dev/null 2>&1"
                 os.system(command)
 
                 os.chdir(new_dir)
@@ -200,7 +216,10 @@ def pptx_to_text(filename):
         if os.path.exists(filename) == True:
             command = "unoconv --format=pdf --output='" + new_dir + \
                 filename.replace(".pptx", ".pdf") + "' '" + filename + "'"
+            # suppress any output or warnings
+            command = command + " 1>/dev/null 2>&1"
             os.system(command)
+
             os.chdir(new_dir)
             command = "pdftotext '" + filename.replace(".pptx", ".pdf") + "'"
             os.system(command)
@@ -219,6 +238,8 @@ def pptx_to_text(filename):
                 command = "unoconv --format=pdf --output='" + new_dir + \
                     nameOfFile.replace(".pptx", ".pdf") + \
                     "' '" + nameOfFile + "'"
+                # suppress any output or warnings
+                command = command + " 1>/dev/null 2>&1"
                 os.system(command)
 
                 os.chdir(new_dir)
@@ -246,6 +267,8 @@ def odp_to_text(filename):
             # convert odp to pdf
             # note: This command automatically creates "converted-presentations" dir and places converted file(s) in it.
             command = "unoconv --format=pdf --output='" + new_dir + filename.replace(".odp",".pdf") + "' '" + filename + "'"
+            # suppress any output or warnings
+            command = command + " 1>/dev/null 2>&1"
             os.system(command)
 
             os.chdir(new_dir)
@@ -265,6 +288,8 @@ def odp_to_text(filename):
                 files_counter += 1
                 # convert odp to pdf
                 command = "unoconv --format=pdf --output='" + new_dir + nameOfFile.replace(".odp",".pdf") + "' '" + nameOfFile + "'"
+                # suppress any output or warnings
+                command = command + " 1>/dev/null 2>&1"
                 os.system(command)
 
                 os.chdir(new_dir)
@@ -312,7 +337,7 @@ def pdf_to_text(filename):
         files_counter=0
         for nameOfFile in os.listdir():
             if nameOfFile.endswith(".pdf"):
-                print("Listdir()")
+                # print("Listdir()")
                 files_counter+=1
                 command="pdftotext '" + nameOfFile + "'"
                 os.system(command) 
@@ -361,9 +386,7 @@ def main():
     if(filename == 'invalid' or keyword == 'invalid'): 
         sys.exit()
     
-
     print("------------------------")
-
     if filename == '*':
         # skip conversion, if 'converted' folder already exists
         if os.path.exists("converted"):
@@ -405,24 +428,31 @@ def main():
         if odt_dir!='':
             # copy everything from converted-odt/ dir into 'converted' dir in base dir
             os.system("cp ./converted-odt/* ./converted/")
+            os.system("rm -rf ./converted-odt")
         if odp_dir!='':
             # copy everything from converted-presentations/ dir into 'converted' dir in base dir
             os.system("cp ./converted-presentations/* ./converted/")
+            os.system("rm -rf ./converted-presentations")
         if pdf_dir!='':
             # copy everything from converted-pdfs/ dir into into 'converted' dir in base dir
             os.system("cp ./converted-pdfs/* ./converted")
+            os.system("rm -rf ./converted-pdfs")
         if docx_dir!='':
             # copy everything from converted-docx/ dir into 'converted' dir in base dir
             os.system("cp ./converted-docx/* ./converted/")
+            os.system("rm -rf ./converted-docx")
         if doc_dir!='':
             # copy everything from converted-doc/ dir into 'converted' dir in base dir
             os.system("cp ./converted-doc/* ./converted/")
+            os.system("rm -rf ./converted-doc")
         if ppt_dir != '':
             # copy everything from converted-ppts/ dir into 'converted' dir in base dir
             os.system("cp ./converted-ppts/* ./converted/")
+            os.system("rm -rf ./converted-ppts")
         if pptx_dir != '':
             # copy everything from converted-pptxs/ dir into 'converted' dir in base dir
             os.system("cp ./converted-pptxs/* ./converted/")
+            os.system("rm -rf ./converted-pptxs")
         # copy all .txt files from base to converted directory if exists
         if glob("*.txt"):
             os.system("cp *txt converted/")

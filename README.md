@@ -46,21 +46,21 @@ This works on almost all types of linux distros (i.e. debian-based, arch-based, 
 
 #### Clone the repo
 ```bash 
-  git clone https://github.com/suraj-singh12/Project-SearchEverywhere/
+git clone https://github.com/suraj-singh12/Project-SearchEverywhere/
 ```
 ```bash  
-  cd Project-SearchEverywhere
+cd Project-SearchEverywhere
 ```
 ```bash
-  sudo chmod +x /dist/SearchEverywhere
+sudo chmod +x ./dist/SearchEverywhere
 ```
 #### Install Dependencies
 ```bash
-  sudo sh dependency.sh
+sudo ./dependency.sh
 ```
 #### Install the tool
 ```bash
-  sudo sh install.sh
+sudo sh install.sh
 ```
 
 > `NOTE:` If you are installing the tool in `WSL`, ensure you also install the dependencies in `wsl_additional_requirements.txt` 

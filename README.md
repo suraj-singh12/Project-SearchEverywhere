@@ -56,6 +56,7 @@ sudo chmod +x ./dist/SearchEverywhere
 ```
 #### Install Dependencies
 ```bash
+sudo chmod +x dependency.sh
 sudo ./dependency.sh
 ```
 #### Install the tool

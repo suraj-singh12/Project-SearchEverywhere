@@ -15,3 +15,7 @@ All notable changes to this project ```SearchEverywhere``` will be documented in
 + Support for other GNU/Linux distros added
 + Support for WSL added
 
+## v1.5.1
+### Features
++ Bug fixes
++ Minor changes

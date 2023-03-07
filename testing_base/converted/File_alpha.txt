@@ -9,3 +9,11 @@ Ohh isn't it beautiful..? Yeah it is!
 Here is my very crucial work "crucial word" 
 Hey i need to have a relook at you ohh my file's crucial keyword
 help me find this file.
+A lot of information about recursive functions is also listed below.
+Recursion: 
+A function that calls itself is called a recursive function.
+Recursive functions are used to solve problems that can be broken down into smaller versions of the same problem.
+Properties: 
+1. A recursive function must have a base case.
+2. A recursive function must change its state and move toward the base case.
+3. A recursive function must call itself, recursively.

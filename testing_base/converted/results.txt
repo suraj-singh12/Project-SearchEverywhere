@@ -1,5 +1,10 @@
 
----------MYDOC.TXT-----------
+---------FILE_ALPHA.TXT-----------
 
-﻿This is a document, and I have some critically important information in this, which I would be requiring often. So let me put in my other docs, which are equally important.
+A lot of information about recursive functions is also listed below.
+A function that calls itself is called a recursive function.
+Recursive functions are used to solve problems that can be broken down into smaller versions of the same problem.
+1. A recursive function must have a base case.
+2. A recursive function must change its state and move toward the base case.
+3. A recursive function must call itself, recursively.
 

@@ -7,17 +7,18 @@
   git clone https://github.com/<your-user-name>/Project-SearchEverywhere.git
 ```
 ```bash  
-  cd Project-SearchEverywhere
+cd Project-SearchEverywhere
 ```
 
 3. Install dependencies 
 ```bash
-  sudo sh dependency.sh
+sudo chmod +x dependency.sh
+sudo ./dependency.sh
 ```
 
 4. Make the source file executable
 ```bash
-  chmod +x src/SearchEverywhere.py
+chmod +x src/SearchEverywhere.py
 ```
 
 5. Copy the src/ contents to testing_base/
